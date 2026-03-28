@@ -8,25 +8,42 @@ pnpm create astro@latest -- --template basics
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+This project follows [Feature-Sliced Design](https://fsd.how/) methodology. Inside your project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
+│   ├── favicon.ico
 │   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+├── src/
+│   ├── _pages/                    # FSD pages layer (page implementations)
+│   │   └── home/
+│   │       ├── ui/                # UI components for the home page
+│   │       │   ├── assets/        # Page-specific assets
+│   │       │   ├── HomePage.astro
+│   │       │   └── Welcome.astro
+│   │       └── index.ts           # Public API export
+│   ├── pages/                     # Astro routing (thin entry points)
+│   │   ├── 404.astro
+│   │   ├── 500.astro
+│   │   └── home.astro
+│   └── shared/                    # FSD shared layer (reusable code)
+│       └── layout/
+│           ├── Layout.astro
+│           └── index.ts
+├── astro.config.mjs
+├── package.json
+├── tsconfig.json
+└── pnpm-lock.yaml
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Feature-Sliced Design Layers
+
+- **`pages/`** - Astro's file-based routing. These are thin entry points that import from `_pages/`.
+- **`_pages/`** - FSD pages layer containing page-specific components and logic, organized by feature.
+- **`shared/`** - FSD shared layer with reusable components, utilities, and configurations used across the entire application.
+
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/). To learn more about FSD, visit [fsd.how](https://fsd.how/).
 
 ## 🧞 Commands
 
